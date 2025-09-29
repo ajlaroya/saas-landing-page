@@ -1,3 +1,5 @@
 export const LogoTicker = () => {
-  return null;
+  return "logo ticker";
 };
+
+// 52:05
