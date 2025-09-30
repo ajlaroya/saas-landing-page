@@ -21,7 +21,7 @@
 
 @layer components {
   .btn {
-    @apply px-4 py-2 rounded-lg font-medium inline-flex items-center justify-center;
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium;
   }
 
   .btn-primary {
@@ -29,7 +29,11 @@
   }
 
   .btn-text {
-    @apply text-black bg-transparent;
+    @apply bg-transparent text-black;
+  }
+
+  .logo-ticker-image {
+    @apply h-8 w-auto;
   }
 }
 

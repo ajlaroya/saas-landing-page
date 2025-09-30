@@ -1,3 +1,5 @@
 export const ProductShowcase = () => {
-  return null;
+  return "product showcase section here";
 };
+
+// 1:00:46
