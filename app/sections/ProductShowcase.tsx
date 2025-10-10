@@ -3,6 +3,8 @@ import pyramidImage from "@/pyramid.png";
 import tubeImage from "@/tube.png";
 import Image from "next/image";
 
+// 2:43:51
+
 export const ProductShowcase = () => {
   return (
     <section className="overflow-x-clip bg-gradient-to-b from-[#FFFFFF] to-[#D2DCFF] py-24">
