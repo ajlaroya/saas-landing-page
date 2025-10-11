@@ -1,3 +1,5 @@
+"use client";
+
 import avatar1 from "@/avatar-1.png";
 import avatar2 from "@/avatar-2.png";
 import avatar3 from "@/avatar-3.png";
@@ -8,7 +10,8 @@ import avatar7 from "@/avatar-7.png";
 import avatar8 from "@/avatar-8.png";
 import avatar9 from "@/avatar-9.png";
 import Image from "next/image";
-import { twMerge } from "tailwind-merge";
+import { motion } from "motion/react";
+import React from "react";
 
 const testimonials = [
   {
@@ -74,33 +77,48 @@ const thirdColumn = testimonials.slice(6, 9);
 const TestimonialsColumn = (props: {
   className?: string;
   testimonials: typeof testimonials;
+  duration?: number;
 }) => (
-  <div
-    className={twMerge(
-      "mt-10 flex flex-col gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)]",
-      props.className,
-    )}
-  >
-    {props.testimonials.map(({ text, imageSrc, name, username }) => (
-      <div className="card" key={name}>
-        <div>{text}</div>
-        <div className="mt-5 flex items-center gap-2">
-          <Image
-            src={imageSrc}
-            alt={name}
-            width={40}
-            height={40}
-            className="h-10 w-10 rounded-full"
-          />
-          <div className="flex flex-col">
-            <div className="leading-5 font-medium tracking-tight">{name}</div>
-            <div className="leading-5 tracking-tight text-gray-500">
-              {username}
+  <div className={props.className}>
+    <motion.div
+      animate={{
+        translateY: "-50%",
+      }}
+      transition={{
+        duration: props.duration || 10,
+        repeat: Infinity,
+        ease: "linear",
+        repeatType: "loop",
+      }}
+      className="flex flex-col gap-6 pb-6"
+    >
+      {[...new Array(2)].fill(0).map((_, index) => (
+        <React.Fragment key={index}>
+          {props.testimonials.map(({ text, imageSrc, name, username }) => (
+            <div className="card" key={name}>
+              <div>{text}</div>
+              <div className="mt-5 flex items-center gap-2">
+                <Image
+                  src={imageSrc}
+                  alt={name}
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 rounded-full"
+                />
+                <div className="flex flex-col">
+                  <div className="leading-5 font-medium tracking-tight">
+                    {name}
+                  </div>
+                  <div className="leading-5 tracking-tight text-gray-500">
+                    {username}
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    ))}
+          ))}
+        </React.Fragment>
+      ))}
+    </motion.div>
   </div>
 );
 
@@ -118,15 +136,17 @@ export const Testimonials = () => {
             essential tool for users around the world.
           </p>
         </div>
-        <div className="flex justify-center gap-6">
-          <TestimonialsColumn testimonials={firstColumn} />
+        <div className="mt-10 flex max-h-[738px] justify-center gap-6 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)]">
+          <TestimonialsColumn testimonials={firstColumn} duration={15} />
           <TestimonialsColumn
             testimonials={secondColumn}
-            className="hidden md:flex"
+            className="hidden md:block"
+            duration={19}
           />
           <TestimonialsColumn
             testimonials={thirdColumn}
-            className="hidden lg:flex"
+            className="hidden lg:block"
+            duration={17}
           />
         </div>
       </div>
